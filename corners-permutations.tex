@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage[]{amsmath,amssymb,textcomp,amsthm}
+\usepackage{float}
 \newcounter{counter}
 \newtheorem{lemma_cub}{Лемма}
 \newtheorem*{def_cub}{Определение}
@@ -78,6 +79,7 @@
 \caption{Взаимные расположения групп угловых кубиков\label{possibleperms}}
 \end{figure}
 \begin{lemma_cub}
+\label{lemma_states}
 Взаимные расположения 5, 6, 7 недостижимы.
 \end{lemma_cub}
 \begin{proof}
@@ -104,6 +106,73 @@
 \end{lemma_cub}
 \begin{proof}
 Докажем, что для каждой перестановки ''палочек'' возможно только 2 ориентации (одна получается из другой разворотом всех ''палочек''), то есть если перевернута одна палочка, то другие 2 тоже перевернуты.
+%Заменим ''палочку'' на ''стрелочку''. Ее начало обозначает тот кубик, который был в верхнем ряду, окончание~-- тот, который был в нижнем.
+Заметим, что взаимные положения 7a, b соответствуют 2-циклам или 3-циклам, которые переставляют соседние кубики. Так как они недостижимы, то нельзя переставить только 2 или только 3 соседних угловых кубика, какой бы ни была перестановка средних кубиков, а все невозможные перестановки в подклассе 0 получаются из возможных перестановкой двух кубиков.
+%\begin{figure}[H]
+%\centering
+%\begin{picture}(20,45)
+%\end{picture}
+%\put(0,20){\circle*{5}} \put(20,20){\circle*{5}} \put(40,20){\circle*{5}}
+%\put(0,0){\circle*{5}} \put(20,0){\circle*{5}} \put(40,0){\circle*{5}}
+%\put(0,20){\vector(0,-1){20}} \put(20,20){\vector(0,-1){20}} \put(40,20){\vector(0,-1){20}}
+%\put(-4,25){A} \put(16,25){B} \put(36,25){C}
+%\caption{Начальное положение угловых кубиков.\label{nperm}}
+%\end{figure}
+%Рассмотрим другое обозначение для этой перестановки: построим стрелочки $A_2 \rightarrow B_1$ (AB), $B_2 \rightarrow C_1$ (BC), $C_2 \rightarrow A_1$ (AC) (рис.~\ref{nperm_new}).
+%\begin{figure}[H]
+%\centering
+%\begin{picture}(20,45)
+%\end{picture}
+%\put(0,20){\circle*{5}} \put(20,20){\circle*{5}} \put(40,20){\circle*{5}}
+%\put(0,0){\circle*{5}} \put(20,0){\circle*{5}} \put(40,0){\circle*{5}}
+%\put(0,0){\vector(1,1){20}} \put(20,0){\vector(1,1){20}} \put(40,0){\vector(-2,1){40}}
+%\put(-6,25){AC} \put(14,25){AB} \put(34,25){BC}
+%\caption{Другое обозначение для единичной перестановки.\label{nperm_new}}
+%\end{figure}
+%Взаимное расположение этих новых ''палочек'' подчиняется тем же правилам, в том числе лемме~\ref{lemma_states}. Тогда перестановка на рис.~\ref{impossible_perm} невозможна, так как ее второе представление недостижимо (рис.~\ref{2nd_rep}).
+%\begin{figure}[H]
+%\centering
+%\begin{picture}(20,45)
+%\end{picture}
+%\put(0,20){\circle*{5}} \put(20,20){\circle*{5}} \put(40,20){\circle*{5}}
+%\put(0,0){\circle*{5}} \put(20,0){\circle*{5}} \put(40,0){\circle*{5}}
+%\put(0,20){\vector(0,-1){20}} \put(20,0){\vector(0,1){20}} \put(40,20){\vector(0,-1){20}}
+%\put(-4,25){A} \put(16,25){B} \put(36,25){C}
+%\caption{Невозможная перестановка.\label{impossible_perm}}
+%\end{figure}
+%\begin{figure}[H]
+%\centering
+%\begin{picture}(20,45)
+%\end{picture}
+%\put(0,20){\circle*{5}} \put(20,20){\circle*{5}} \put(40,20){\circle*{5}}
+%\put(0,0){\circle*{5}} \put(20,0){\circle*{5}} \put(40,0){\circle*{5}}
+%\put(0,0){\vector(1,0){20}} \put(20,20){\vector(1,0){20}} \put(40,0){\vector(-2,1){40}}
+%\put(-20,-3){AB} \put(14,25){BC} \put(45,-3){AC}
+%\caption{Ее второе представление.\label{2nd_rep}}
+%\end{figure}
+
+%Перестановка на рис~\ref{2nd_imp_perm} также невозможна, потому что ее второе представление (рис.~\ref{2nd_repr_2}) движением $L^{-1}U$ можно свести к недостижимому как на рис~\ref{impossible_perm}.
+%\begin{figure}[H]
+%\centering
+%\begin{picture}(20,45)
+%\end{picture}
+%\put(0,20){\circle*{5}} \put(20,20){\circle*{5}} \put(40,20){\circle*{5}}
+%\put(0,0){\circle*{5}} \put(20,0){\circle*{5}} \put(40,0){\circle*{5}}
+%\put(0,20){\vector(0,-1){20}} \put(20,20){\vector(0,-1){20}} \put(40,0){\vector(0,1){20}}
+%\put(-4,25){A} \put(16,25){B} \put(36,25){C}
+%\caption{Еще одна невозможная перестановка.\label{2nd_imp_perm}}
+%\end{figure}
+%\begin{figure}[H]
+%\centering
+%\begin{picture}(20,45)
+%\end{picture}
+%\put(0,20){\circle*{5}} \put(20,20){\circle*{5}} \put(40,20){\circle*{5}}
+%\put(0,0){\circle*{5}} \put(20,0){\circle*{5}} \put(40,0){\circle*{5}}
+%\put(0,0){\vector(1,1){20}} \put(20,0){\vector(1,0){20}} \qbezier(40,20)(20,40)(0,20)
+%\put(-20,-3){AB} \put(45,16){AC} \put(45,-3){BC}
+%\caption{Ее второе представление.\label{2nd_repr_2}}
+%Аналогично для
+%\end{figure}
 \end{proof}
 То есть всего возможных состояний $20\cdot 6=120$.
 Докажем, что группа, порожденная поворотами, изоморфна $\mathbb{S}_5$.

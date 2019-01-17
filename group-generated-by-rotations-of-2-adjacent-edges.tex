@@ -4,9 +4,7 @@
 \usepackage[]{amsmath,amssymb,textcomp,amsthm}
 \usepackage{float}
 \usepackage{tikz}
-\newtheorem{lemma_cub}{Лемма}
-\newtheorem{lemma_cub1}{Лемма}
-\newtheorem*{def_cub}{Определение}
+\newtheorem{lemma_cub}{Лемма}[section]
 \title{Группа, порожденная поворотами двух смежных граней кубика Рубика}
 \author{}
 \date{}
@@ -14,9 +12,9 @@
 \maketitle
 Обозначим повороты граней на 90\textdegree~по часовой стрелке как $U$ и $L$.
 \section{О поворотах угловых кубиков}
-\begin{lemma_cub1}
+\begin{lemma_cub}
 У любой перестановки можно поменять углы поворотов двух смежных кубиков.
-\end{lemma_cub1}
+\end{lemma_cub}
 \begin{proof}
 Существует такая комбинация поворотов:
 \begin{multline*}
@@ -38,9 +36,9 @@ $$
 прибавить 3 к любым из 6 кубиков. То есть можно получить столько же комбинаций,
 сколько разбиений чисел 0,3,6,9,12 на 6 слагаемых из множества $\{0,1,2\}$ с
 учетом порядка.
-\begin{lemma_cub1}
+\begin{lemma_cub}
     Разбиений чисел 0, 3, 6, 9, 12 на 6 слагаемых из множества $\{0,1,2\}$~--- 243.
-\end{lemma_cub1}
+\end{lemma_cub}
 \begin{proof}
     Разбиений по суммам(0~-- поворот на 0\textdegree; 1~-- на 120\textdegree; 2~-- на 240\textdegree):
     \begin{description}
@@ -55,9 +53,9 @@ $$
     \end{description}
     Всего вариантов 243.
 \end{proof}
-\begin{lemma_cub1}
+\begin{lemma_cub}
 Группа комбинаций поворотов маленьких кубиков~--- $\mathbb{Z}_3^5$.
-\end{lemma_cub1}
+\end{lemma_cub}
 \begin{proof}
     Каждый элемент в ней имеет порядок 3 и размер группы $3^5$, поэтому она изоморфна $\mathbb{Z}_3^5$.
 \end{proof}

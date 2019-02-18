@@ -357,6 +357,7 @@ asdasd
 %------------------------------------------------
 
 \begin{frame}
+%\vspace*{-0.7cm}	
 \begin{multline*} %(1,6,4,3,2)
 $$
 \alpha=U^{-1}L^{-1}ULU^{-1}L^{-1}UL^{-1}U^{-1}LUL^{-1}U(LU^{-1})^2L^{-1}U^{-1}L^{-1}(UL)^3L^2 \\
@@ -377,7 +378,7 @@ $$
 	\vspace*{-1cm}
 	\begin{figure}[c]
 		\ShowCube{2cm}{0.3}{\DrawRubikCubeF}
-		\caption{Движение $M_{corners}$}
+		\caption{Движение $\alpha$}
 	\end{figure}
 	\column{0.45\textwidth}
 	\RubikCubeSolved
@@ -386,31 +387,52 @@ $$
 	\vspace*{-1cm}
 	\begin{figure}[c]
 		\ShowCube{2cm}{0.3}{\DrawRubikCubeF}
-		\caption{Движение $M_{corners}$}
+		\caption{Движение $\beta$}
 	\end{figure}
+\end{columns}
+%\vspace*{-0.4cm}
+\begin{columns}
+\column{0.45\textwidth}
+\begin{itemize}
+\item $\alpha^5=e$
+\item $\beta^4=e$
+\item $\beta\alpha\beta^{-1}=\alpha^2$
+\end{itemize}
+\column{0.45\textwidth}
+Поэтому в группе содержится группа, изоморфная $F_5$.
 \end{columns}
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Citation}
-An example of the \verb|\cite| command to cite within the presentation:\\~
-
-This statement requires citation \cite{p1}.
+\begin{frame}
+\begin{theorem}
+	Элементы в $F_5$ принадлежат разным подклассам.
+\end{theorem}
+\begin{proof}
+\begin{itemize}
+	\item $h$ и $h^{-1}$ не могут быть в разных подклассах
+	$$ah^{-1}=h$$
+	$$a=h^2$$
+	$$a,a^2,\ldots,a^6=e\in G\text{ и }\in F_5\text{, но }\mathbb{Z}_6\not\subset F_5$$
+	\item
+	Если два элемента $h_1$ и $h_2$ принадлежат одному классу, то $ah_1=h_2$ для некоторого $a\in G_{0+}$ и $a=h_2h_1^{-1}$ $$a^{-1}=h_1h_2^{-1}\in G_{0+}\text{ и }a^{-1}\in F_5$$
+\end{itemize}
+\end{proof}
+$\mathbb{Z}_6\cap F_5=\{e\}$, и $G_{corners}=\mathbb{Z}_6F_5=\{hk|h\in\mathbb{Z}_6,k\in F_5\}$.
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{References}
-\footnotesize{
-\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-\bibitem[Smith, 2012]{p1} John Smith (2012)
-\newblock Title of the publication
-\newblock \emph{Journal Name} 12(3), 45 -- 678.
-\end{thebibliography}
-}
+\begin{theorem}
+$S_5=\mathbb{Z}_6F_5$
+\end{theorem}
+\begin{proof}
+	$F_5$ разбивает $S_5$ на 6 классов смежности.
+	$x$ и $x^{-1}$ лежат в разных классах.
+	
+\end{proof}
 \end{frame}
 
 %------------------------------------------------

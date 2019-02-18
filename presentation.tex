@@ -1,0 +1,425 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\mode<presentation> {
+\usetheme{Madrid}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\usepackage{tikz}
+\usepackage{rubikcube}
+\usepackage{shellesc}
+\usepackage{rubikrotation,rubikpatterns}
+\usepackage[]{amsmath,amssymb,textcomp,amsthm}
+\usepackage{float}
+\usepackage[inline]{enumitem}
+
+\title[Подгруппа кубика Рубика]{Группа, порожденная поворотами двух смежных граней кубика Рубика}
+\author{Егор Нечаев}\institute[СУНЦ МГУ]{
+Специализированный учебно-научный центр (факультет) – школа-интернат имени А.Н.Колмогорова Московского государственного университета имени М.В.Ломоносова \\
+\medskip
+\textit{nechaev.e.01@gmail.com}
+}
+\date{Москва, 24.02.2019}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\RubikCubeSolved
+%\RubikRotation{y3,z3}
+\RubikRotation{random,50}
+\begin{figure}
+\ShowCube{2cm}{0.5}{\DrawRubikCubeLU}
+\end{figure}
+\end{frame}
+\begin{frame}
+\frametitle{Введение}
+Цель работы: исследовать подгруппу кубика Рубика, порожденную поворотами двух смежных граней.
+
+Задачи: рассмотреть группы движения отдельных элементов
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[->,auto,scale=1,semithick]
+\node[text width=2cm,align=center] (a) at (1.5,3) {Движения граней};
+\node[text width=2cm,align=center] (b) at (-3,1) {Движения середин};
+\node[text width=2cm,align=center] (c) at (0,1) {Повороты середин};
+\node[text width=2cm,align=center] (d) at (3,1) {Движения углов};
+\node[text width=2cm,align=center] (e) at (6,1) {Повороты углов};
+\path   (a)  edge node      {} (b)
+        (a)  edge node      {} (c)
+        (a)  edge node      {} (d)
+        (a)  edge node      {} (e)
+;
+\end{tikzpicture}
+\caption{Отдельные элементы\label{states_graph}}
+\end{figure}
+\end{frame}
+\begin{frame}
+	\frametitle{Обозначения}
+	\RubikCubeSolved
+	\RubikRotation{y3,z3}
+	\begin{figure}
+		\ShowCube{10cm}{1}{
+			\DrawRubikCubeLU
+		}
+	\end{figure}
+\end{frame}
+
+\section{centers}
+\subsection{centers.perms}
+
+\begin{frame}
+\begin{theorem}
+	Группа перестановок средних кубиков изоморфна $S_7$
+\end{theorem}
+\frametitle{Группа перестановок средних кубиков}
+\begin{proof}
+G действует на 7 элементах, поэтому $G\subseteq S_7$. Кроме того существуют движения $UL=(1,2,3,4,5,6,7)$ и $L^{-1}U^2LU^{-1}L^{-1}U^{-1}LU^{-1}=(1,2)$.
+$(1,2,\ldots,n)^{-i}(1,2)(1,2,\ldots,n)^i=(i+1,i+2)$~--- порождающие элементы $S_7$, поэтому $S_7\subseteq G$.
+\end{proof}
+\vspace*{-5mm}
+\begin{columns}[c]
+\column{.45\textwidth}
+\begin{figure}
+\RubikCubeSolved
+\RubikRotation{U,L}
+\RubikRotation{y3,z3}
+\ShowCube{2cm}{0.3}{\DrawRubikCubeF}
+\caption{$UL$}
+\end{figure}
+\column{.45\textwidth}
+\begin{figure}
+\RubikCubeSolved
+\RubikRotation{Lp,U2,L,Up,Lp,Up,L,Up}
+\RubikRotation{y3,z3}
+\ShowCube{2cm}{0.3}{\DrawRubikCubeF}
+\caption{$L^{-1}U^2LU^{-1}L^{-1}U^{-1}LU^{-1}$}
+\end{figure}
+\end{columns}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Группа поворотов средних кубиков}
+...
+Изоморфна $\{e\}$
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Группа поворотов угловых кубиков}
+\begin{theorem}
+Группа поворотов угловых кубиков изоморфна $\mathbb{Z}_3^5$.
+\end{theorem}
+\begin{multline*}
+$$
+M = ULU^{-1}LU^{-1}L^{-1}U^2L^{-1}U^{-1}LU^{-1}LULU^{-1}       \\
+L^{-1}UL^{-1}U^{-1}L^2ULU^{-1}L^2ULU^{-1}LU^2LU^{-1}L^{-1} \\
+U^{-1}L^2ULUL^{-1}U^2L^2U^2LU^{-1}LUL^2U^{-1}L^2
+$$
+\end{multline*}
+\begin{figure}
+	\RubikCubeSolved
+	\RubikRotation{U,L,Up,L,Up,Lp,U2,Lp,Up,L,Up,L,U,L,Up,
+		Lp,U,Lp,Up,L2,U,L,Up,L2,U,L,Up,L,U2,L,Up,Lp,
+		Up,L2,U,L,U,Lp,U2,L2,U2,L,Up,L,U,L2,Up,L2}
+	\RubikRotation{y3,z3}
+	\ShowCube{2cm}{0.5}{\DrawRubikCubeLU}
+	\caption{Движение $M$}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\section{corners.perms}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Группа перестановок угловых кубиков}
+\RubikCubeSolved
+\RubikRotation{y3,z3}
+\begin{figure}
+	\ShowCube{10cm}{1}{
+		\DrawRubikCubeLU
+		\draw[->,ultra thick,color=green] (0.5,2.5) -- (0.5,0.5);
+		\draw[->,ultra thick,color=green] (2.5,2.5) -- (2.5,0.5);
+		\draw[->,ultra thick,color=green] (-0.85,3.4) -- (-0.85,1.15);
+	}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+%\frametitle{Группа перестановок угловых кубиков}
+Разделим все кубики на 20 групп.
+\vspace*{-5mm}
+\begin{columns}[c]
+\column{.5\textwidth}
+\begin{figure}[c]
+	\centering
+	\scalebox{.45}{
+	\begin{picture}(300,380)
+	\put(5,370){\circle*{5}} \put(25,370){\circle*{5}} \put(45,370){\circle*{5}}
+	\put(5,350){\circle*{5}} \put(25,350){\circle*{5}} \put(45,350){\circle*{5}}
+	\put(5,350){\line(0,0){20}} \put(25,350){\line(0,0){20}} \put(45,350){\line(0,0){20}}
+	\put(270,357){(0)}
+	
+	\put(5,320){\circle*{5}} \put(25,320){\circle*{5}} \put(45,320){\circle*{5}}
+	\put(75,320){\circle*{5}} \put(95,320){\circle*{5}} \put(115,320){\circle*{5}}
+	\put(5,300){\line(0,0){20}} \put(25,300){\line(1,0){20}} \put(25,320){\line(1,0){20}}
+	\put(5,300){\circle*{5}} \put(25,300){\circle*{5}} \put(45,300){\circle*{5}}
+	\put(75,300){\circle*{5}} \put(95,300){\circle*{5}} \put(115,300){\circle*{5}}
+	\put(115,300){\line(0,0){20}} \put(95,300){\line(-1,0){20}} \put(95,320){\line(-1,0){20}}
+	\put(270,317){(1 a, b)}
+	
+	\put(5,270){\circle*{5}} \put(25,270){\circle*{5}} \put(45,270){\circle*{5}}
+	\put(75,270){\circle*{5}} \put(95,270){\circle*{5}} \put(115,270){\circle*{5}}
+	\put(5,250){\line(2,1){41}} \put(25,250){\line(-1,1){20}} \put(45,250){\line(-1,1){20}}
+	\put(5,250){\circle*{5}} \put(25,250){\circle*{5}} \put(45,250){\circle*{5}}
+	\put(75,250){\circle*{5}} \put(95,250){\circle*{5}} \put(115,250){\circle*{5}}
+	\put(115,250){\line(-2,1){41}} \put(95,250){\line(1,1){20}} \put(75,250){\line(1,1){20}}
+	\put(270,257){(2 a, b)}
+	
+	\put(5,220){\circle*{5}} \put(25,220){\circle*{5}} \put(45,220){\circle*{5}}
+	\put(5,200){\circle*{5}} \put(25,200){\circle*{5}} \put(45,200){\circle*{5}}
+	\put(5,200){\line(2,1){41}} \put(45,200){\line(-2,1){41}} \put(25,200){\line(0,1){20}}
+	\put(270,207){(3)}
+	
+	\put(5,170){\circle*{5}} \put(25,170){\circle*{5}} \put(45,170){\circle*{5}}
+	\put(5,150){\circle*{5}} \put(25,150){\circle*{5}} \put(45,150){\circle*{5}}
+	\put(5,150){\line(1,0){20}} \put(45,150){\line(-1,1){20}} \qbezier(5,170)(25,190)(45,170)
+	\put(75,170){\circle*{5}} \put(95,170){\circle*{5}} \put(115,170){\circle*{5}}
+	\put(75,150){\circle*{5}} \put(95,150){\circle*{5}} \put(115,150){\circle*{5}}
+	\put(75,150){\line(1,1){20}} \put(95,150){\line(1,0){20}} \qbezier(75,170)(95,190)(115,170)
+	\put(145,170){\circle*{5}} \put(165,170){\circle*{5}} \put(185,170){\circle*{5}}
+	\put(145,150){\circle*{5}} \put(165,150){\circle*{5}} \put(185,150){\circle*{5}}
+	\put(165,150){\line(-1,1){20}} \put(165,170){\line(1,0){20}} \qbezier(145,150)(165,130)(185,150)
+	\put(215,170){\circle*{5}} \put(235,170){\circle*{5}} \put(255,170){\circle*{5}}
+	\put(215,150){\circle*{5}} \put(235,150){\circle*{5}} \put(255,150){\circle*{5}}
+	\put(215,170){\line(1,0){20}} \put(235,150){\line(1,1){20}} \qbezier(215,150)(235,130)(255,150)
+	\put(270,157){(4 a, b, c, d)}
+	
+	\put(5,120){\circle*{5}} \put(25,120){\circle*{5}} \put(45,120){\circle*{5}}
+	\put(5,100){\circle*{5}} \put(25,100){\circle*{5}} \put(45,100){\circle*{5}}
+	\put(5,120){\line(2,-1){41}} \put(5,100){\line(1,0){20}} \put(25,120){\line(1,0){20}}
+	\put(75,120){\circle*{5}} \put(95,120){\circle*{5}} \put(115,120){\circle*{5}}
+	\put(75,100){\circle*{5}} \put(95,100){\circle*{5}} \put(115,100){\circle*{5}}
+	\put(75,100){\line(2,1){41}} \put(75,120){\line(1,0){20}} \put(95,100){\line(1,0){20}}
+	\put(270,107){(5 a, b)}
+	
+	\put(5,70){\circle*{5}} \put(25,70){\circle*{5}} \put(45,70){\circle*{5}}
+	\put(5,50){\circle*{5}} \put(25,50){\circle*{5}} \put(45,50){\circle*{5}}
+	\qbezier(5,70)(25,90)(45,70) \qbezier(5,50)(25,30)(45,50) \put(25,50){\line(0,1){20}}
+	\put(270,57){(6)}
+	
+	\put(5,20){\circle*{5}} \put(25,20){\circle*{5}} \put(45,20){\circle*{5}}
+	\put(5,0){\circle*{5}} \put(25,0){\circle*{5}} \put(45,0){\circle*{5}}
+	\put(5,0){\line(0,1){20}} \put(25,0){\line(1,1){20}} \put(45,0){\line(-1,1){20}}
+	\put(75,20){\circle*{5}} \put(95,20){\circle*{5}} \put(115,20){\circle*{5}}
+	\put(75,0){\circle*{5}} \put(95,0){\circle*{5}} \put(115,0){\circle*{5}}
+	\put(115,0){\line(0,1){20}} \put(75,0){\line(1,1){20}} \put(95,0){\line(-1,1){20}}
+	\put(270,17){(7 a, b)}
+	\end{picture}
+	}
+	\centering
+	\caption{\small{Взаимные расположения групп угловых кубиков\label{possibleperms}}}
+\end{figure}
+\column{.54\textwidth}
+\begin{figure}[c]
+	\centering
+	\scalebox{.66}{
+	\begin{tikzpicture}[->,auto,scale=1,semithick]
+	\node (7b) at (5,-2) {7b};
+	\node (7a) at (1,-2) {7a};
+	\node (6) at (3,-4) {6};
+	\node (5b) at (5,-3) {5b};
+	\node (5a) at (1,-3) {5a};
+	\node (2b) at (1,-1) {2b};
+	\node (2a) at (5,-1) {2a};
+	\node (3) at (3,3) {3};
+	\node (4a) at (0,1) {4a};
+	\node (4d) at (2,1) {4d};
+	\node (4c) at (4,1) {4c};
+	\node (4b) at (6,1) {4b};
+	\node (1a) at (1,4) {1a};
+	\node (1b) at (5,4) {1b};
+	\node (0) at (3,5) {0};
+	
+	\path   (0)  edge [bend left=10] node[xshift=-10pt]      {\scriptsize{$L$,$L^{-1}$}} (1a)
+	edge [bend left=10] node                    {\scriptsize{$U$,$U^{-1}$}} (1b)
+	(1a) edge                node[above,xshift=5pt]  {\scriptsize{$U$}}          (4d)
+	edge                node[above]             {\scriptsize{$U^{-1}$}}     (4a)
+	edge [bend left=20] node                    {\scriptsize{$L$,$L^{-1}$}} (0)
+	(1b) edge                node[above]             {\scriptsize{$L^{-1}$}}     (4c)
+	edge                node                    {\scriptsize{$L$}}          (4b)
+	edge [bend left=20] node[xshift=10pt]       {\scriptsize{$U$,$U^{-1}$}} (0)
+	(4a) edge                node[below]             {\scriptsize{$U^{-1}$}}     (3)
+	edge                node[below]             {\scriptsize{$L$}}          (2b)
+	edge                node[below]             {\scriptsize{$L^{-1}$}}     (4d)
+	(4b) edge                node[below]             {\scriptsize{$L$}}          (3)
+	edge                node                    {\scriptsize{$U^{-1}$}}     (2a)
+	(4c) edge                node[below,xshift=-6pt] {\scriptsize{$L^{-1}$}}     (3)
+	edge                node[above]             {\scriptsize{$U$}}          (2b)
+	edge                node[below]             {\scriptsize{$U^{-1}$}}     (4b)
+	(4d) edge                node[below,xshift=4pt]  {\scriptsize{$U$}}          (3)
+	edge                node                    {\scriptsize{$L^{-1}$}}     (2a)
+	(2b) edge [bend left=10] node                    {\scriptsize{$U$}}          (2a)
+	(2a) edge [bend left=10] node                    {\scriptsize{$U^{-1}$}}     (2b)
+	
+	(7a) edge [loop left]    node                    {\scriptsize{$L$,$L^{-1}$}} (7a)
+	edge                node                    {\scriptsize{$U^{-1}$}}     (5a)
+	edge                node                    {\scriptsize{$U$}}          (5b)
+	(5a) edge                node[below]             {\scriptsize{$U^{-1}$,$L^{-1}$}} (6)
+	(7b) edge [loop right]   node                    {\scriptsize{$U$,$U^{-1}$}} (7b)
+	edge                node                    {\scriptsize{$L$}}          (5b)
+	edge                node                    {\scriptsize{$L^{-1}$}}     (5a)
+	(5b) edge                node                    {\scriptsize{$U$,$L$}}      (6)
+	;
+	\end{tikzpicture}
+	}
+	\caption{Граф переходов между состояниями\label{states_graph}}
+\end{figure}
+\end{columns}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{theorem}
+Для разных перестановок $a_1$, $a_2$ из подкласса $0+$ и из одной перестановки любого класса $b$ $a_1b$ и $a_2b$~--- разные перестановки того же подкласса, что и $b$.
+\end{theorem}
+\begin{theorem}
+В подклассе 0+ возможно 6 разных состояний.
+\end{theorem}
+\begin{proof}
+Если для состояния $M$ возможно состояние $F$, в котором только у одной из стрелочек изменено направление, то $MF^{-1}$~--- 2-цикл. Все 2-циклы~--- либо неразрешенные состояния, либо переводятся в неразрешенные.
+
+2-цикл $C$, меняющий местами два соседних горизонтальных кубика, принадлежит к классам 7a,b.
+\begin{columns}
+\column{.45\textwidth}
+\begin{figure}[c]
+	\begin{tikzpicture}
+	\node[style={shape=circle,fill=black,scale=0.2}] (A2) at (0,0) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (A1) at (0,0.5) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (B2) at (0.5,0) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (B1) at (0.5,0.5) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (C2) at (1,0) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (C1) at (1,0.5) {};
+	\draw[->] (A1) -- (A2);
+	\draw[->] (B1) -- (B2);
+	\draw[->] (C2) -- (C1);
+	\path[->] (1.3,0.25) edge node[above] {\tiny{$L$}} (1.7,0.25);
+	\node[style={shape=circle,fill=black,scale=0.2}] (A2) at (2,0) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (A1) at (2,0.5) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (B2) at (2.5,0) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (B1) at (2.5,0.5) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (C2) at (3,0) {};
+	\node[style={shape=circle,fill=black,scale=0.2}] (C1) at (3,0.5) {};
+	\draw[->] (A1) -- (A2);
+	\draw[->] (C1) -- (B1);
+	\draw[->] (B2) -- (C2);
+	\node (e) at (3.5,0.25) {~$=LC$};
+	\end{tikzpicture}
+\end{figure}
+\column{.45\textwidth}
+asdasd
+\end{columns}
+\end{proof}
+\end{frame}
+
+\begin{frame}
+	\begin{theorem}
+		Элементы класса 0+ образуют группу, изоморфную $\mathbb{Z}_6$.	
+	\end{theorem}
+	\begin{proof}
+		\vspace*{-7mm}
+		\begin{multline*}
+		$$
+		M_{corners}=L^{-1}U^{-1}L^{-1}UL^{-1}U^{-1}L^2ULU^{-1}L^2ULU^{-1}LU^2L \\
+		(U^{-1}L^{-1})^2L^{-1}ULUL^{-1}U^2L^2U^2LU^{-1}LUL^2U^{-1} \\
+		(U^{-1}L^{-1})^2(UL)^2UL^{-1}UL(U^{-1}L^{-1})^2UL^2U^{-1}L^{-1}UL^{-1}
+		$$
+		\end{multline*}
+		\RubikCubeSolved
+		\RubikRotation{Lp,Up,Lp,U,Lp,Up,L2,U,L,Up,L2,U,L,Up,L,U2,L,Up,Lp,Up,Lp,Lp,U,L,U,Lp,U2,L2,U2,L,Up,L,U,L2,Up,Up,Lp,Up,Lp,U,L,U,L,U,Lp,U,L,Up,Lp,Up,Lp,U,L2,Up,Lp,U,Lp}
+		\RubikRotation{y3,z3}
+		\vspace*{-1cm}
+		\begin{figure}[c]
+		\ShowCube{2cm}{0.3}{\DrawRubikCubeF}
+		\caption{Движение $M_{corners}$}
+		\end{figure}
+		\vspace*{-7mm}
+		\end{proof}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\begin{multline*} %(1,6,4,3,2)
+$$
+\alpha=U^{-1}L^{-1}ULU^{-1}L^{-1}UL^{-1}U^{-1}LUL^{-1}U(LU^{-1})^2L^{-1}U^{-1}L^{-1}(UL)^3L^2 \\
+U^{-1}L^{-1}UL^{-1}U^{-1}LUL^{-1}U^{-1}L^2UL^{-1}U^{-1}L^2ULU^{-1}LUL
+$$
+\end{multline*}
+\begin{multline*} %(1,2,6,4)
+$$
+\beta=LU^{-1}LUL^2U^{-1}LUL^2UL^{-1}U^{-1}L(U^{-1}L^{-1})^2U^{-1}(LU)^2L^{-1}U^{-1}L^{-1}\\ 
+(L^{-1}ULU^{-1}LU)^2L^2U^{-1}L^{-1}U^{-1}(L^{-1}U)^2LU^2L(UL^{-1})^2U^{-1}
+$$
+\end{multline*}
+\begin{columns}
+	\column{0.45\textwidth}
+	\RubikCubeSolved
+	\RubikRotation{Up,Lp,U,L,Up,Lp,U,Lp,Up,L,U,Lp,U,L,Up,L,Up,Lp,Up,Lp,U,L,U,L,U,L,L2,Up,Lp,U,Lp,Up,L,U,Lp,Up,L2,U,Lp,Up,L2,U,L,Up,L,U,L}
+	\RubikRotation{y3,z3}
+	\vspace*{-1cm}
+	\begin{figure}[c]
+		\ShowCube{2cm}{0.3}{\DrawRubikCubeF}
+		\caption{Движение $M_{corners}$}
+	\end{figure}
+	\column{0.45\textwidth}
+	\RubikCubeSolved
+	\RubikRotation{L,Up,L,U,L2,Up,L,U,L2,U,Lp,Up,L,Up,Lp,Up,Lp,Up,L,U,L,U,Lp,Up,Lp,Lp,U,L,Up,L,U,Lp,U,L,Up,L,U,L2,Up,Lp,Up,Lp,U,Lp,U,L,U2,L,U,Lp,U,Lp,Up}
+	\RubikRotation{y3,z3}
+	\vspace*{-1cm}
+	\begin{figure}[c]
+		\ShowCube{2cm}{0.3}{\DrawRubikCubeF}
+		\caption{Движение $M_{corners}$}
+	\end{figure}
+\end{columns}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
+\frametitle{Citation}
+An example of the \verb|\cite| command to cite within the presentation:\\~
+
+This statement requires citation \cite{p1}.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{References}
+\footnotesize{
+\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+\bibitem[Smith, 2012]{p1} John Smith (2012)
+\newblock Title of the publication
+\newblock \emph{Journal Name} 12(3), 45 -- 678.
+\end{thebibliography}
+}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\Huge{\centerline{Спасибо за внимание!}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 
+\grid

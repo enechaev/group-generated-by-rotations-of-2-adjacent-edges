@@ -38,23 +38,15 @@
 \frametitle{Введение}
 Цель работы: исследовать подгруппу группы кубика Рубика, порожденную поворотами двух смежных граней.
 
-Задачи: рассмотреть группы движения отдельных элементов
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[->,auto,scale=1,semithick]
-\node[text width=2cm,align=center] (a) at (1.5,3) {Движения граней};
-\node[text width=2cm,align=center] (b) at (-3,1) {Движения середин};
-\node[text width=2cm,align=center] (c) at (0,1) {Повороты середин};
-\node[text width=2cm,align=center] (d) at (3,1) {Движения углов};
-\node[text width=2cm,align=center] (e) at (6,1) {Повороты углов};
-\path   (a)  edge node      {} (b)
-        (a)  edge node      {} (c)
-        (a)  edge node      {} (d)
-        (a)  edge node      {} (e)
-;
-\end{tikzpicture}
-\caption{Отдельные элементы\label{states_graph}}
-\end{figure}
+Рассмотрим группы движения отдельных типов элементов.
+
+Преобразования граней:
+\begin{enumerate}
+	\item Перестановки угловых кубиков
+	\item Повороты угловых кубиков
+	\item Перестановки реберных кубиков
+	\item Повороты реберных кубиков
+\end{enumerate}
 \end{frame}
 
 %\begin{frame}
@@ -78,7 +70,7 @@
 \frametitle{Группа перестановок средних кубиков}
 \begin{proof}
 G действует на 7 элементах, поэтому $G\subseteq S_7$. Кроме того существуют движения $UL=(1,2,3,4,5,6,7)$ и $L^{-1}U^2LU^{-1}L^{-1}U^{-1}LU^{-1}=(1,2)$.
-$(1,2,\ldots,n)^{-i}(1,2)(1,2,\ldots,n)^i=(i+1,i+2)$~--- порождающие элементы $S_7$, поэтому $S_7\subseteq G$.
+$(1,2,\ldots,7)^{-i}(1,2)(1,2,\ldots,7)^i=(i+1,i+2)$~--- порождающие элементы $S_7$, поэтому $S_7\subseteq G$.
 \end{proof}
 \vspace*{-5mm}
 \begin{columns}[c]
@@ -172,7 +164,7 @@ $$
 
 \begin{frame}
 %\frametitle{Группа перестановок угловых кубиков}
-Разделим все кубики на 20 групп.
+Разделим все перестановки угловых кубиков на 15 классов. Классы~--- наборы перестановок, которые имеют одну и ту же ''форму'', с точностью до перестановки ''палочек'' и их разворотов.
 \vspace*{-5mm}
 \begin{columns}[c]
 \column{.5\textwidth}
@@ -243,7 +235,7 @@ $$
 	\end{picture}
 	}
 	\centering
-	\caption{\small{Взаимные расположения групп угловых кубиков\label{possibleperms}}}
+	\caption{\small{Разбиения угловых кубиков на пары\label{possibleperms}}}
 \end{figure}
 \column{.54\textwidth}
 \begin{figure}[c]
@@ -298,82 +290,42 @@ $$
 	;
 	\end{tikzpicture}
 	}
-	\caption{Граф переходов между состояниями\label{states_graph}}
+	\caption{Граф переходов между разбиениями\label{states_graph}}
 \end{figure}
 \end{columns}
 \end{frame}
 
 %------------------------------------------------
+\begin{frame}
+	\begin{theorem}
+		Для любой перестановки $a$ из класса 0 и любой перестановки $b$ любого класса $ab$~--- перестановка того же подкласса, что и $b$.
+	\end{theorem}
+	\begin{proof}
+		Каждой перестановке $b$ соответствует некоторая последовательность из поворотов $U,L,U^{-1},L^{-1}$. Эта последовательность переводит перестановку из класса 0 в перестановку из того же класса, что и $b$ (так как не зависит от перестановки ''палочек''). 	
+	\end{proof}
+	Класс 0 разделим на два подкласса(0+ и 0--).
+	
+	Каждый класс разделим на подклассы таким образом:
+	в каждом классе выберем произвольный элемент $b$, тогда $ab$ для всех $a$ из класса 0 будет четным, если $a$~--- четный.
+	
+	Поэтому ''четность'' сохраняется при умножении слева на элементы из подкласса 0+.
+\end{frame}
 
 \begin{frame}
 \begin{theorem}
-Для разных перестановок $a_1$, $a_2$ из подкласса $0+$ и из одной перестановки любого класса $b$ $a_1b$ и $a_2b$~--- разные перестановки того же подкласса, что и $b$.
-\end{theorem}
-\begin{theorem}
-В подклассе 0+ возможно 6 разных состояний.
+В подклассе 0+ возможно 6 различных состояний.
 \end{theorem}
 \begin{proof}
-Если для состояния $M$ возможно состояние $F$, в котором только у одной из стрелочек изменено направление, то $MF^{-1}$~--- 2-цикл. Все 2-циклы~--- либо неразрешенные состояния, либо переводятся в неразрешенные.
+Для любой перестановки ''палочек'' возможно только 2 ориентации.
+Переставить 2 кубика из одной пары невозможно, так как для движения $C$, которое переставляет два вертикальных кубика и любого движения $X\in\{U,L,U^{-1},L^{-1}\}$. $XCX^{-1}$~--- движение, которое переставляет два кубика из разных ''палочек'' (оно относится к классу 7a,b).
 
-2-цикл $C$, меняющий местами два соседних горизонтальных кубика, принадлежит к классам 7a,b.
-\begin{columns}
-\column{.45\textwidth}
-\begin{figure}[c]
-	\begin{tikzpicture}
-	\node[style={shape=circle,fill=black,scale=0.2}] (A2) at (0,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (A1) at (0,0.5) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (B2) at (0.5,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (B1) at (0.5,0.5) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (C2) at (1,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (C1) at (1,0.5) {};
-	\draw[->] (A1) -- (A2);
-	\draw[->] (B1) -- (B2);
-	\draw[->] (C2) -- (C1);
-	\path[->] (1.3,0.25) edge node[above] {\tiny{$L$}} (1.7,0.25);
-	\node[style={shape=circle,fill=black,scale=0.2}] (A2) at (2,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (A1) at (2,0.5) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (B2) at (2.5,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (B1) at (2.5,0.5) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (C2) at (3,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (C1) at (3,0.5) {};
-	\draw[->] (A1) -- (A2);
-	\draw[->] (C1) -- (B1);
-	\draw[->] (B2) -- (C2);
-	\node (e) at (3.5,0.25) {~$=LC$};
-	\end{tikzpicture}
-\end{figure}
-\column{.45\textwidth}
-\begin{figure}[c]
-	\begin{tikzpicture}
-	\node[style={shape=circle,fill=black,scale=0.2}] (A2) at (0,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (A1) at (0,0.5) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (B2) at (0.5,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (B1) at (0.5,0.5) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (C2) at (1,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (C1) at (1,0.5) {};
-	\draw[->] (A1) -- (A2);
-	\draw[->] (B2) -- (B1);
-	\draw[->] (C1) -- (C2);
-	\path[->] (1.3,0.25) edge node[above] {\tiny{$L$}} (1.7,0.25);
-	\node[style={shape=circle,fill=black,scale=0.2}] (A2) at (2,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (A1) at (2,0.5) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (B2) at (2.5,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (B1) at (2.5,0.5) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (C2) at (3,0) {};
-	\node[style={shape=circle,fill=black,scale=0.2}] (C1) at (3,0.5) {};
-	\draw[->] (A1) -- (A2);
-	\draw[->] (B1) -- (C1);
-	\draw[->] (C2) -- (B2);
-	\node (e) at (3.5,0.25) {~$=LC$};
-	\end{tikzpicture}
-\end{figure}
-\end{columns}
+Возможно поменять ориентацию всех трех ''палочек''. Разворот двух ''палочек'' можно представить как разворот трех ''палочек'' + разворот одной ''палочки'', поэтому он невозможен.
 \end{proof}
 \end{frame}
 
 \begin{frame}
 	\begin{theorem}
-		Элементы класса 0+ образуют группу, изоморфную $\mathbb{Z}_6$.	
+		Элементы класса 0+ образуют группу $G_{0+}$, изоморфную $\mathbb{Z}_6$.	
 	\end{theorem}
 	\begin{proof}
 		\vspace*{-7mm}
@@ -440,7 +392,7 @@ $$
 \item $\beta\alpha\beta^{-1}=\alpha^2$
 \end{itemize}
 \column{0.45\textwidth}
-Поэтому в группе содержится группа, изоморфная $F_5$.
+Поэтому в группе содержится группа $G_{F}$, изоморфная $F_5$.
 \end{columns}
 \end{frame}
 
@@ -448,27 +400,27 @@ $$
 
 \begin{frame}
 \begin{theorem}
-	Элементы в $F_5$ принадлежат разным подклассам.
+	Элементы в $G_F$ принадлежат разным подклассам.
 \end{theorem}
 \begin{proof}
 \begin{itemize}
 	\item $h$ и $h^{-1}$ не могут быть в разных подклассах
 	$$ah^{-1}=h$$
 	$$a=h^2$$
-	$$a,a^2,\ldots,a^6=e\in G\text{ и }\in F_5\text{, но }\mathbb{Z}_6\not\subset F_5$$
+	$$a,a^2,\ldots,a^6=e\in G_{0+}\text{ и }\in G_F\text{, но }G_{0+}\not\subset G_F\text{(теорема Лагранжа)}$$
 	\item
-	Если два элемента $h_1$ и $h_2$ принадлежат одному классу, то $ah_1=h_2$ для некоторого $a\in G_{0+}$ и $a=h_2h_1^{-1}$ $$a^{-1}=h_1h_2^{-1}\in G_{0+}\text{ и }a^{-1}\in F_5$$
+	Если два элемента $h_1$ и $h_2$ принадлежат одному классу, то $ah_1=h_2$ для некоторого $a\in G_{0+}$ и $a=h_2h_1^{-1}$ $$a^{-1}=h_1h_2^{-1}\in G_{0+}\text{ и }a^{-1}\in G_F$$
 \end{itemize}
 \vspace*{-0.4cm}
 \end{proof}
-$\mathbb{Z}_6\cap F_5=\{e\}$, и $G_{corners}=\mathbb{Z}_6F_5=\{hk|h\in\mathbb{Z}_6,k\in F_5\}$.
+$G_{0+}\cap G_F=\{e\}$, и $G_{corners}=G_{0+}G_F=\{hk|h\in G_{0+},k\in G_F\}\cong\mathbb{Z}_6F_5$.
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
 \begin{theorem}
-$S_5=\mathbb{Z}_6F_5$
+$S_5=\mathbb{Z}_6F_5$.
 \end{theorem}
 \begin{proof}
 	\begin{itemize}
@@ -478,6 +430,7 @@ $S_5=\mathbb{Z}_6F_5$
 		\item Предположим, что $x_1x_2K=x_2K$. $x_2^{-1}x_1x_2\in K$
 		$$K_i^{x_2^{-1}}=K_0\text{, то есть } x=e$$
 	\end{itemize}
+	Выберем какой-нибудь элемент порядка 6, тогда все его степени будут принадлежать разным классам смежности. То есть $S_5=\mathbb{Z}_6F_5=\{hk|h\in\mathbb{Z}_6,k\in F_5\}$.
 %\vspace*{-0.4cm}
 \end{proof}
 \end{frame}
@@ -486,6 +439,16 @@ $S_5=\mathbb{Z}_6F_5$
 
 \begin{frame}
 \frametitle{Описание полной группы}
+\begin{itemize}
+	\item Группа перестановок всех кубиков и группа поворотов всех кубиков нормальна. $g=(r,p_1)\in G$ и $x=(e,p_2)\in \{e\}\times C_p$ $gxg^{-1}=(e,p_1p_2p_1^{-1})\in \{e\}\times C_p$.
+	\item Полная группа разлагается в прямое произведение $G=C_r\times C_p$.
+	\item $C_r\cong \mathbb{Z}_3^5$.
+	\item Группа $C_p$~--- это подгруппа $S_5\times S_7$.
+	\item Нормальная подгруппа $A_5\times A_7$, $g=(m_c,m_e)\in C_p$, $x=(x_c,x_e)\in A_5\times A_7$ $gxg^{-1}=(m_cx_cm_c^{-1},m_ex_em_e^{-1})\in C_p$ и $gxg^{-1}\in A_5\times A_7$.
+	\item В силу инварианта кубика Рубика каждый элемент в $C_p$ можно единственным образом представить в виде $gs$, где $g\in A_5\times A_7$, $s\in \langle((1~2),(1~2))\rangle$.
+	А так как $(A_5\times A_7)\cap \langle((1~2),(1~2))\rangle=\{(e,e)\}$ и группа $A_5\times A_7$ нормальна, группа $C_p$ представляется в виде полупрямого произведения $(A_5\times A_7)\rtimes\mathbb{Z}_2$.
+\end{itemize}
+Поэтому полная группа, порожденная поворотами двух смежных граней, изоморфна $G=\mathbb{Z}_3^5\times ((A_5\times A_7)\rtimes\mathbb{Z}_2)$.
 \end{frame}
 
 %------------------------------------------------
@@ -497,4 +460,4 @@ $S_5=\mathbb{Z}_6F_5$
 %----------------------------------------------------------------------------------------
 
 \end{document} 
-\grid
+%\grid

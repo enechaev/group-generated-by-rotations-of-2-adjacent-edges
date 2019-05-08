@@ -22,7 +22,7 @@
 \medskip
 \textit{nechaev.e.01@gmail.com}
 }
-\date{Москва, 24.02.2019}
+\date{Москва, 06.05.2019}
 
 \begin{document}
 \begin{frame}
@@ -49,25 +49,35 @@
 \end{enumerate}
 \end{frame}
 
-%\begin{frame}
-%	\frametitle{Обозначения}
-%	\RubikCubeSolved
-%	\RubikRotation{y3,z3}
-%	\begin{figure}
-%		\ShowCube{10cm}{1}{
-%			\DrawRubikCubeLU
-%		}
-%	\end{figure}
-%\end{frame}
+\begin{frame}
+	\frametitle{Обозначения. Группа кубика Рубика}
+	\RubikCubeSolved
+	\RubikRotation{y3,z3}
+	\begin{figure}
+		\ShowCube{10cm}{1}{
+			\DrawRubikCubeLU
+            \node[text=green] (L) at (1.5,1.5) {\huge{$L$}};
+            \node[text=green] (U) at (-0.5,2) {\Large{$U$}};
+		}
+	\end{figure}
+    $G_{cube}\subset S_{48}$.
+    
+    Инварианты:
+    \begin{enumerate}
+        \item Сумма углов поворотов угловых кубиков делится на 360\textdegree.
+        \item Сумма углов поворотов реберных кубиков делится на 360\textdegree.
+        \item Четность перестановок угловых и реберных кубиков совпадает.
+    \end{enumerate}
+\end{frame}
 
 \section{centers}
 \subsection{centers.perms}
 
 \begin{frame}
 \begin{theorem}
-	Группа перестановок средних кубиков изоморфна $S_7$.
+	Группа перестановок реберных кубиков изоморфна $S_7$.
 \end{theorem}
-\frametitle{Группа перестановок средних кубиков}
+\frametitle{Группа перестановок реберных кубиков}
 \begin{proof}
 G действует на 7 элементах, поэтому $G\subseteq S_7$. Кроме того существуют движения $UL=(1,2,3,4,5,6,7)$ и $L^{-1}U^2LU^{-1}L^{-1}U^{-1}LU^{-1}=(1,2)$.
 $(1,2,\ldots,7)^{-i}(1,2)(1,2,\ldots,7)^i=(i+1,i+2)$~--- порождающие элементы $S_7$, поэтому $S_7\subseteq G$.
@@ -96,9 +106,9 @@ $(1,2,\ldots,7)^{-i}(1,2)(1,2,\ldots,7)^i=(i+1,i+2)$~--- порождающие 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Группа поворотов средних кубиков}
+\frametitle{Группа поворотов реберных кубиков}
 \begin{theorem}
-Группа поворотов средних кубиков тривиальна.
+Группа поворотов реберных кубиков тривиальна.
 \end{theorem}
 \begin{proof}
 	\RubikCubeSolved
@@ -115,7 +125,7 @@ $(1,2,\ldots,7)^{-i}(1,2)(1,2,\ldots,7)^i=(i+1,i+2)$~--- порождающие 
 			\draw[->,ultra thick,color=green] (-0.4,3.4) -- (-0.7,3.7);
 		}
 	\end{figure}
-	Чтобы у среднего кубика поменялась ориентация, нужно, чтобы поменялось направление стрелочки. При поворотах граней стрелочки всегда совмещаются.
+	Чтобы у реберного кубика поменялась ориентация, нужно, чтобы поменялось направление стрелочки. При поворотах граней стрелочки всегда совмещаются.
 \end{proof}
 \end{frame}
 
@@ -235,7 +245,7 @@ $$
 	\end{picture}
 	}
 	\centering
-	\caption{\small{Разбиения угловых кубиков на пары\label{possibleperms}}}
+	\caption{\small{Классы пар угловых кубиков\label{possibleperms}}}
 \end{figure}
 \column{.54\textwidth}
 \begin{figure}[c]
@@ -290,7 +300,7 @@ $$
 	;
 	\end{tikzpicture}
 	}
-	\caption{Граф переходов между разбиениями\label{states_graph}}
+	\caption{Граф переходов между классами\label{states_graph}}
 \end{figure}
 \end{columns}
 \end{frame}
@@ -428,7 +438,7 @@ $S_5=\mathbb{Z}_6F_5$.
 		%\item $x$ и $x^{-1}$ лежат в разных классах. $$xK=x^{-1}K$$ $$x^2K=K\text{, то есть }x=e$$
 		\item Предположим, что $x_1x_2K=x_1K$. $$x_2K=K\text{, поэтому } x_2=e\text{.}$$
 		\item Предположим, что $x_1x_2K=x_2K$. $x_2^{-1}x_1x_2\in K$
-		$$K_i^{x_2^{-1}}=K_0\text{, то есть } x=e$$
+		$$K_i^{x_2^{-1}}=K_0\text{, то есть } x_1=e$$
 	\end{itemize}
 	Выберем какой-нибудь элемент порядка 6, тогда все его степени будут принадлежать разным классам смежности. То есть $S_5=\mathbb{Z}_6F_5=\{hk|h\in\mathbb{Z}_6,k\in F_5\}$.
 %\vspace*{-0.4cm}
@@ -440,15 +450,17 @@ $S_5=\mathbb{Z}_6F_5$.
 \begin{frame}
 \frametitle{Описание полной группы}
 \begin{itemize}
-	\item Группа перестановок всех кубиков и группа поворотов всех кубиков нормальна. $g=(r,p_1)\in G$ и $x=(e,p_2)\in \{e\}\times C_p$ $gxg^{-1}=(e,p_1p_2p_1^{-1})\in \{e\}\times C_p$.
-	\item Полная группа разлагается в прямое произведение $G=C_r\times C_p$.
-	\item $C_r\cong \mathbb{Z}_3^5$.
-	\item Группа $C_p$~--- это подгруппа $S_5\times S_7$.
-	\item Нормальная подгруппа $A_5\times A_7$, $g=(m_c,m_e)\in C_p$, $x=(x_c,x_e)\in A_5\times A_7$ $gxg^{-1}=(m_cx_cm_c^{-1},m_ex_em_e^{-1})\in C_p$ и $gxg^{-1}\in A_5\times A_7$.
-	\item В силу инварианта кубика Рубика каждый элемент в $C_p$ можно единственным образом представить в виде $gs$, где $g\in A_5\times A_7$, $s\in \langle((1~2),(1~2))\rangle$.
-	А так как $(A_5\times A_7)\cap \langle((1~2),(1~2))\rangle=\{(e,e)\}$ и группа $A_5\times A_7$ нормальна, группа $C_p$ представляется в виде полупрямого произведения $(A_5\times A_7)\rtimes\mathbb{Z}_2$.
+	\item Группа перестановок всех кубиков и группа поворотов всех кубиков нормальна. $g=(r,p_1)\in G$ и $x=(e,p_2)\in \{e\}\times C_p$ $gxg^{-1}=(e,p_1p_2p_1^{-1})\in \{e\}\times C_p$, то есть $G=C_r\times C_p$.
+	\item $C_r\cong \mathbb{Z}_3^5$
+    \item $A_5\times A_7$~--- нормальная подгруппа, $g=(m_c,m_e)\in C_p$, $x=(x_c,x_e)\in A_5\times A_7$ $gxg^{-1}=(m_cx_cm_c^{-1},m_ex_em_e^{-1})\in C_p$ и $gxg^{-1}\in A_5\times A_7$.
+    \item $\mathbb{Z}_2$~--- нормальная подгруппа.
+    \item $C_p\cong (A_5\times A_7)\times \mathbb{Z}_2$
+	%\item Группа $C_p$~--- это подгруппа $S_5\times S_7$.
+	%\item Нормальная подгруппа $A_5\times A_7$, $g=(m_c,m_e)\in C_p$, $x=(x_c,x_e)\in A_5\times A_7$ $gxg^{-1}=(m_cx_cm_c^{-1},m_ex_em_e^{-1})\in C_p$ и $gxg^{-1}\in A_5\times A_7$.
+	%\item В силу инварианта кубика Рубика каждый элемент в $C_p$ можно единственным образом представить в виде $gs$, где $g\in A_5\times A_7$, $s\in \langle((1~2),(1~2))\rangle$.
+	%А так как $(A_5\times A_7)\cap \langle((1~2),(1~2))\rangle=\{(e,e)\}$ и группа $A_5\times A_7$ нормальна, группа $C_p$ представляется в виде полупрямого произведения $(A_5\times A_7)\rtimes\mathbb{Z}_2$ с тривиальным гомоморфизмом $\phi:\mathbb{Z}_2\rightarrow Aut(A_5\times A_7) (\cong S_5\times S_7)$.
 \end{itemize}
-Поэтому полная группа, порожденная поворотами двух смежных граней, изоморфна $G=\mathbb{Z}_3^5\times ((A_5\times A_7)\rtimes\mathbb{Z}_2)$.
+Поэтому полная группа, порожденная поворотами двух смежных граней, изоморфна $G=\mathbb{Z}_3^5\times ((A_5\times A_7)\times\mathbb{Z}_2)$.
 \end{frame}
 
 %------------------------------------------------
